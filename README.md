@@ -1,6 +1,9 @@
 # Gravity Eligibility
 
-## Discover available CDS services
+## Workflow diagram
+![Gravity eligibility workflow diagram](https://github.com/Gravity-SDOHCC/gravity-eligibility-connectathon/blob/main/gravity_workflow.svg)
+
+## Discover available CDS services (not on workflow diagram)
 Make a request to CDS Discovery endpoint:
 ```
 GET CDS_SERVICE_BASE_URL/cds-services
@@ -24,7 +27,7 @@ GET CDS_SERVICE_BASE_URL/cds-services
 }
 ```
 
-## Call CDS service
+## Call CDS service (1 on diagram)
 When viewing a patient's chart, call the CDS service to check for available SDOH
 services:
 
@@ -46,7 +49,7 @@ POST CDS_SERVICE_BASE_URL/sdoh-eligibility-check
 }
 ```
 
-## Receive response
+## Receive response (2 on diagram)
 Several types of responses can be received. Successful responses will have a 200
 HTTP status code.
 
