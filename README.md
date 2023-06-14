@@ -124,16 +124,16 @@ can be used to provide custom functionality.
     {
       "summary": "Launch transportation assistance enrollment app",
       "indicator": "info",
-       "source": {
-          "label": "You're Covered Insurance",
-          "url": "https://example.com",
-          "icon": "https://example.com/img/icon-100px.png"
-        },
-        "links": [
-          "label": "Transportation Enrollment",
-          "url": "https://example.com/launch-transportation-enrollment",
-          "type": "smart"
-        ]
+      "source": {
+        "label": "You're Covered Insurance",
+        "url": "https://example.com",
+        "icon": "https://example.com/img/icon-100px.png"
+      },
+      "links": [
+        "label": "Transportation Enrollment",
+        "url": "https://example.com/launch-transportation-enrollment",
+        "type": "smart"
+      ]
     }
   ]
 }
@@ -148,30 +148,33 @@ and this is a modification of that use).
 ```
 200
 {
-  "summary": "Refer the patient to transportation service provider",
-  "indicator": "info",
-  "source": {
-    "label": "You're Covered Insurance",
-    "url": "https://example.com",
-    "icon": "https://example.com/img/icon-100px.png"
-  },
-  "suggestions": [
+  "cards": [
     {
-      "label": "Refer to transport company ABC",
-      "actions": [
+      "summary": "Refer the patient to transportation service provider",
+      "indicator": "info",
+      "source": {
+        "label": "You're Covered Insurance",
+        "url": "https://example.com",
+        "icon": "https://example.com/img/icon-100px.png"
+      },
+      "suggestions": [
         {
-          "type": "create",
-          "decsription": "Create referral to transport company ABC",
-          "resource": {
-            "resourceType": "Task",
-            "for": {
-              "reference": "Patient/456"
-            },
-            ...
-          }
+          "label": "Refer to transport company ABC",
+          "actions": [
+            {
+              "type": "create",
+              "decsription": "Create referral to transport company ABC",
+              "resource": {
+                "resourceType": "Task",
+                "for": {
+                  "reference": "Patient/456"
+                },
+                ...
+              }
+            }
+          ]
         }
       ]
-
     }
   ]
 }

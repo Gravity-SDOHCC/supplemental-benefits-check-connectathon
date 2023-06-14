@@ -1,18 +1,18 @@
 @startuml
-title Gravity SDOH Eligibility Workflow
+title Gravity Social Care Benefit Eligibility Workflow
 
 participant Patient
 participant "Provider/CBO" as Provider
 participant Payer
 participant HRSNProvider
 
-note across: Patient completes a screening instrument during or prior to encounter
+note across: Patient completes a social risk assessment instrument during or prior to encounter
 'Provider -> Patient: Screening Questionnaire
 'Patient -> Provider: Screening QuestionnaireResponse
 |||
 note over Provider, Patient: Patient arrives for appointment
 Provider -> Provider: Confirm social risk and mutually define social need
-group HRSN Eligibility Determination (CRD/CDS Hooks)
+group Social Care Benefit Eligibility Determination (CRD/CDS Hooks)
   autonumber 1 "<font color=red size=18>"
   Provider -> Payer: Request eligibility check
   autonumber stop
@@ -25,7 +25,7 @@ group HRSN Eligibility Determination (CRD/CDS Hooks)
   autonumber stop
   deactivate Payer
 end
-Provider -> Provider: View information on available services
+Provider -> Provider: View information on available benefits
 
 group SDOH Referral
   Provider -> HRSNProvider: Referral
