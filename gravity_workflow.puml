@@ -27,7 +27,7 @@ group Social Care Benefit Eligibility Determination (CRD/CDS Hooks)
 end
 Provider -> Provider: View information on available benefits
 
-group SDOH Referral
+group Social Care Referral
   Provider -> HRSNProvider: Referral
   HRSNProvider -> Patient: Provide service
   HRSNProvider -> Provider: Notify that services provided

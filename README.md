@@ -18,7 +18,7 @@ GET CDS_SERVICE_BASE_URL/cds-services
       "id": "sdoh-eligibility-check",
       "prefetch": {
         "patient": "Patient/{{context.patientId}}",
-        "coverage": "Coverage?patient=Patient/{{context.patientId}}",
+        "coverage": "Coverage?patient={{context.patientId}}&status=active",
         "goals": "Goal?patient=Patient/{{context.patientId}}&lifecycle-status=active",
         "observations": "Observation?patient=Patient/{{context.patientId}}&category=social-history"
       }
