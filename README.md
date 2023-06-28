@@ -20,7 +20,8 @@ GET CDS_SERVICE_BASE_URL/cds-services
         "patient": "Patient/{{context.patientId}}",
         "coverage": "Coverage?patient={{context.patientId}}&status=active",
         "goals": "Goal?patient=Patient/{{context.patientId}}&lifecycle-status=active",
-        "observations": "Observation?patient=Patient/{{context.patientId}}&category=social-history"
+        "conditions": "Condition?patient=Patient/{{context.patientId}}&category:in=http://hl7.org/fhir/us/sdoh-clinicalcare/ValueSet/SDOHCC-ValueSetSDOHCategory",
+        "consent": "Consent?patient={{context.patientId}}&category=IDSCL&status=active"
       }
     }
   ]
@@ -44,7 +45,8 @@ POST CDS_SERVICE_BASE_URL/sdoh-eligibility-check
     "patient": { "resourceType": "Patient", "id": "456" ... },
     "coverage": { "resourceType": "Bundle", "type": "searchset" ... },
     "goals": { "resourceType": "Bundle", "type": "searchset" ... },
-    "observations": { "resourceType": "Bundle", "type": "searchset" ... }
+    "conditions": { "resourceType": "Bundle", "type": "searchset" ... },
+    "consent": { "resourceType": "Bundle", "type": "searchset" ... }
   }
 }
 ```
@@ -163,10 +165,10 @@ and this is a modification of that use).
           "actions": [
             {
               "type": "create",
-              "decsription": "Create referral to transport company ABC",
+              "decsription": "Create ServiceRequest for referral to transport company ABC",
               "resource": {
-                "resourceType": "Task",
-                "for": {
+                "resourceType": "ServiceRequest",
+                "subject": {
                   "reference": "Patient/456"
                 },
                 ...
