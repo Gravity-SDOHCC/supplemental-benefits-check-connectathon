@@ -1,7 +1,7 @@
 # Social Care Supplemental Benefits Check
 
 ## Workflow diagram
-![Social care supplemental benefits check workflow diagram](https://github.com/Gravity-SDOHCC/social-care-supplemental-benefits/blob/main/gravity_workflow.svg)
+![Social care supplemental benefits check workflow diagram](https://github.com/Gravity-SDOHCC/supplemental-benefits-check-connectathon/blob/main/gravity_workflow.svg)
 
 ## Discover available CDS services (not on workflow diagram)
 Make a request to CDS Discovery endpoint:
