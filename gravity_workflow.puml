@@ -1,5 +1,5 @@
 @startuml
-title Gravity Social Care Benefit Eligibility Workflow
+title Social Care Supplemental Benefits Workflow
 
 participant Patient
 participant "Provider/CBO" as Provider
@@ -12,16 +12,16 @@ note across: Patient completes a social risk assessment instrument during or pri
 |||
 note over Provider, Patient: Patient arrives for appointment
 Provider -> Provider: Confirm social risk and mutually define social need
-group Social Care Benefit Eligibility Determination (CRD/CDS Hooks)
+group Social Care Supplemental Benefits Determination (CRD/CDS Hooks)
   autonumber 1 "<font color=red size=18>"
-  Provider -> Payer: Request eligibility check
+  Provider -> Payer: Request supplemental benefits check
   autonumber stop
   activate Payer
 
   Payer <--> Provider: Request additional information
 
   autonumber 2 "<font color=red size=18>"
-  Payer -> Provider: Send eligibility determination
+  Payer -> Provider: Send supplemental benefits information
   autonumber stop
   deactivate Payer
 end

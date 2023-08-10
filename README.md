@@ -1,7 +1,7 @@
-# Gravity Eligibility
+# Social Care Supplemental Benefits Check
 
 ## Workflow diagram
-![Gravity eligibility workflow diagram](https://github.com/Gravity-SDOHCC/gravity-eligibility-connectathon/blob/main/gravity_workflow.svg)
+![Social care supplemental benefits check workflow diagram](https://github.com/Gravity-SDOHCC/social-care-supplemental-benefits/blob/main/gravity_workflow.svg)
 
 ## Discover available CDS services (not on workflow diagram)
 Make a request to CDS Discovery endpoint:
@@ -13,13 +13,13 @@ GET CDS_SERVICE_BASE_URL/cds-services
   "services": [
     {
       "hook": "patient-view",
-      "title": "SDOH Service Eligibility Check",
-      "description": "Check for availability of SDOH services",
-      "id": "sdoh-eligibility-check",
+      "title": "Social Care Supplemental Benefit Check",
+      "description": "Check for available social care supplemental benefits",
+      "id": "sdoh-benefit-check",
       "prefetch": {
         "patient": "Patient/{{context.patientId}}",
-        "coverage": "Coverage?patient={{context.patientId}}&status=active",
-        "goals": "Goal?patient=Patient/{{context.patientId}}&lifecycle-status=active",
+        "coverage": "Coverage?patient=Patient/{{context.patientId}}&status=active",
+        "goals": "Goal?patient=Patient/{{context.patientId}}&lifecycle-status=active&category:in=http://hl7.org/fhir/us/sdoh-clinicalcare/ValueSet/SDOHCC-ValueSetSDOHCategory",
         "conditions": "Condition?patient=Patient/{{context.patientId}}&category:in=http://hl7.org/fhir/us/sdoh-clinicalcare/ValueSet/SDOHCC-ValueSetSDOHCategory",
         "consent": "Consent?patient={{context.patientId}}&category=IDSCL&status=active"
       }
@@ -33,7 +33,7 @@ When viewing a patient's chart, call the CDS service to check for available SDOH
 services:
 
 ```
-POST CDS_SERVICE_BASE_URL/sdoh-eligibility-check
+POST CDS_SERVICE_BASE_URL/sdoh-benefit-check
 {
   "hook": "patient-view",
   "hookInstance": "d1577c69-dfbe-44ad-ba6d-3e05e953b2ea",
@@ -141,7 +141,7 @@ can be used to provide custom functionality.
 }
 ```
 
-### Create a task
+### Create a ServiceRequest & Task
 A card can be used to create a Task in the user's system (CRD specifically
 defines [cards for creating Tasks for the completion of a
 Questionnaire](http://www.hl7.org/fhir/us/davinci-crd/hooks.html#request-form-completion),
@@ -168,11 +168,22 @@ and this is a modification of that use).
               "decsription": "Create ServiceRequest for referral to transport company ABC",
               "resource": {
                 "resourceType": "ServiceRequest",
+                "id": "abc123",
                 "subject": {
                   "reference": "Patient/456"
                 },
                 ...
               }
+            },
+            {
+              "type": "create",
+              "description": "Create referral task",
+              "resource": {
+                "resourceType": "Task",
+                "focus": {
+                  "reference": "ServiceRequest/abc123"
+                },
+                ...
             }
           ]
         }
